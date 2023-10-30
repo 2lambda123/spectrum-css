@@ -14,18 +14,9 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "main": "dist/index-vars.css",
-  "scripts": {
-    "build": "gulp"
-  },
   "peerDependencies": {
-    "@spectrum-css/opacitycheckerboard": ">=1.0.0-alpha.0",
+    "@spectrum-css/opacitycheckerboard": ">=1",
     "@spectrum-css/tokens": ">=13"
-  },
-  "devDependencies": {
-    "@spectrum-css/component-builder-simple": "^2.0.18",
-    "@spectrum-css/opacitycheckerboard": "^1.0.6",
-    "@spectrum-css/tokens": "^13.0.3",
-    "gulp": "^4.0.0"
   },
   "publishConfig": {
     "access": "public"

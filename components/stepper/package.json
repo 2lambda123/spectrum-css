@@ -14,23 +14,17 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "main": "dist/index-vars.css",
-  "scripts": {
-    "build": "gulp"
-  },
   "peerDependencies": {
     "@spectrum-css/actionbutton": ">=5",
     "@spectrum-css/icon": ">=4",
-    "@spectrum-css/textfield": ">=4",
+    "@spectrum-css/infieldbutton": ">=4",
+    "@spectrum-css/textfield": ">=6",
     "@spectrum-css/tokens": ">=13"
   },
-  "devDependencies": {
-    "@spectrum-css/actionbutton": "^5.0.14",
-    "@spectrum-css/component-builder-simple": "^2.0.18",
-    "@spectrum-css/icon": "^4.0.4",
-    "@spectrum-css/infieldbutton": "^4.0.3",
-    "@spectrum-css/textfield": "^6.0.27",
-    "@spectrum-css/tokens": "^13.0.3",
-    "gulp": "^4.0.0"
+  "peerDependenciesMeta": {
+    "@spectrum-css/infieldbutton": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"

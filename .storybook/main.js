@@ -1,14 +1,15 @@
 const { resolve } = require("path");
 const { readdirSync } = require("fs");
+
 const componentsPath = resolve(__dirname, "../components");
 const componentPkgs = readdirSync(componentsPath, {
 	withFileTypes: true,
 })
 	.filter((dirent) => dirent.isDirectory())
 	.map((dirent) => dirent.name);
+
 module.exports = {
 	stories: [
-		"../components/*/stories/*.stories.mdx",
 		"../components/*/stories/*.stories.@(js|jsx|ts|tsx)",
 	],
 	rootDir: "../",
@@ -42,14 +43,16 @@ module.exports = {
 	},
 	env: {
 		MIGRATED_PACKAGES: componentPkgs.filter((dir) => {
-			const pkg = require(resolve(componentsPath, dir, "package.json"));
-			if (
-				pkg.devDependencies &&
-				pkg.devDependencies["@spectrum-css/component-builder-simple"]
-			) {
-				return true;
-			}
-			return false;
+			const location = require.resolve(`@spectrum-css/${dir}/package.json`);
+			if (!location) return false;
+
+			const pkg = require(location);
+
+			if (!pkg) return false;
+			return (
+				pkg.peerDependencies &&
+				pkg.peerDependencies["@spectrum-css/tokens"]
+			);
 		}),
 	},
 	webpackFinal: function (config) {

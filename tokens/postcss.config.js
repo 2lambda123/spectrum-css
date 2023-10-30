@@ -11,42 +11,67 @@
  * governing permissions and limitations under the License.
  */
 
-module.exports = (ctx) => {
-	const {
-		combineSelectors = true,
-		/* This removes all copyright comments so we can add a single one at the top of the file */
-		commentsDenylist = ["Copyright", "This file contains"],
-	} = ctx.options;
-	return {
-		plugins: [
-			require("postcss-rgb-mapping")(),
-			require("postcss-sorting")({
-				order: ["custom-properties", "declarations", "at-rules", "rules"],
-				"properties-order": "alphabetical",
-			}),
-			/* Merges _adjacent_ rules only */
-			require("postcss-merge-rules"),
-			/* Combines all duplicated selectors */
-			combineSelectors
-				? require("postcss-combine-duplicated-selectors")({})
-				: null,
-			/* Remove all duplicate copyrights and add a single one at the top */
-			require("postcss-discard-comments")({
-				removeAllButFirst: true,
-				remove: (comment) => {
-					return (
-						commentsDenylist.some((str) => comment.includes(str)) ||
-						comment.trim() === ""
-					);
-				},
-			}),
-			/* After cleaning up comments, remove all empty rules */
-			require("postcss-discard-empty")(),
-			/* Ensure the license is at the top of the file */
-			require("postcss-licensing")({
-				filename: "../../COPYRIGHT",
-				skipIfEmpty: true,
-			}),
-		],
-	};
+const { join } = require("path");
+
+module.exports = ({ env = "development", options = {} }) => {
+    const isProduction = Boolean(env === "production");
+
+    return {
+        ...options,
+        plugins: {
+            /* --------------------------------------------------- */
+            /* ------------------- IMPORTS ---------------- */
+            /** @link https://github.com/postcss/postcss-import#postcss-import */
+            "postcss-import": {},
+            /* --------------------------------------------------- */
+            /* ------------------- ORGANIZE/DEDUPE --------------- */
+            "postcss-autocorrect": {},
+            "postcss-combine-media-query": {},
+            "postcss-sorting": {
+                order: ["custom-properties", "declarations", "rules", "at-rules"],
+                "properties-order": "alphabetical",
+            },
+            /** @note Merges _adjacent_ rules only; hense the sorting is first */
+            "postcss-merge-rules": {},
+            "postcss-combine-duplicated-selectors": {},
+            "@spectrum-tools/postcss-rgb-mapping": {},
+            /* --------------------------------------------------- */
+            /* ------------------- CLEAN-UP TASKS ---------------- */
+            "postcss-discard-comments": {
+                removeAll: true,
+            },
+            /* After cleaning up comments, remove all empty rules */
+            cssnano: {
+                preset: [
+                    "lite",
+                    {
+                        normalizeWhitespace: false,
+                        discardComments: true,
+                        orderedValues: {},
+                        mergeRules: {},
+                        uniqueSelectors: {},
+                        cssDeclarationSorter: {},
+                    },
+                ],
+            },
+            /* --------------------------------------------------- */
+            /* ------------------- REPORTING --------------------- */
+            "@spectrum-tools/postcss-prettier": {},
+            stylelint: !isProduction
+                ? {
+                      configFile: join(__dirname, "../stylelint.config.js"),
+                      allowEmptyInput: true,
+                      cache: true,
+                      ignorePath: join(__dirname, "../.stylelintignore"),
+                      reportNeedlessDisables: isProduction,
+                      reportInvalidScopeDisables: isProduction,
+                  }
+                : false,
+            "postcss-reporter": !isProduction
+                ? {
+                      clearReportedMessages: true,
+                  }
+                : false,
+        },
+    };
 };

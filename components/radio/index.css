@@ -10,13 +10,13 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-/* radio/index.css
+/*
+ * @note ::before styles the input circle
+ * @note ::after styles the Focus ring
  *
- * ::before is to style the input circle
- * ::after is to style the Focus ring
- *
+ * @component .spectrum-Radio
+ * @category Forms
  */
-
 .spectrum-Radio {
   /* state colors for all themes */
   --spectrum-radio-neutral-content-color: var(--spectrum-neutral-content-color-default);
@@ -231,7 +231,7 @@ governing permissions and limitations under the License.
                         var(--mod-radio-button-border-color-focus,
                             var(--spectrum-radio-button-border-color-focus)));
     }
-    
+
     /* focus ring is focused state */
     .spectrum-Radio-button::after {
       border-style: solid;

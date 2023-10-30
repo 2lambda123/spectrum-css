@@ -22,8 +22,7 @@ export default async (plop) => {
 	const projectName = process.env.PROJECT_NAME ?? 'Spectrum CSS';
 	const pkg = await fetchPackage(rootFolder);
 
-	const tokens = await fetchPackage(dirname(require.resolve('@spectrum-css/tokens/package.json')));
-	const builder = await fetchPackage(resolve(process.cwd(), '../tools/component-builder-simple'));
+	const tokens = await fetchPackage(resolve(srcPath, 'tokens'));
 
 	/* Fetch the project name */
 	plop.setWelcomeMessage(`Welcome to the ${projectName} component generator!\n  To get started, answer a few short questions about your component.`);

@@ -6,33 +6,22 @@ import { styleMap } from "lit/directives/style-map.js";
 import { Template as InfieldButton } from "@spectrum-css/infieldbutton/stories/template.js";
 import { Template as Textfield } from "@spectrum-css/textfield/stories/template.js";
 
-import "../index.css";
+import "@spectrum-css/stepper";
 
 export const Template = ({
-	rootClass = "spectrum-Stepper",
-	size = "m",
-	isQuiet = false,
-	isFocused = false,
-	isKeyboardFocused = false,
-	isInvalid = false,
-	isDisabled = false,
-	hideStepper = false,
-	customClasses = [],
-	id,
-	style = {
-		"--mod-actionbutton-icon-size": "10px",
-	},
-	...globals
+    rootClass = "spectrum-Stepper",
+    isQuiet = false,
+    isFocused = false,
+    isKeyboardFocused = false,
+    isInvalid = false,
+    isDisabled = false,
+    hideStepper = false,
+    customClasses = [],
+    id,
+    style = {
+        "--mod-actionbutton-icon-size": "10px",
+    },
 }) => {
-	const { express } = globals;
-
-	try {
-		if (!express) import(/* webpackPrefetch: true */ "../themes/spectrum.css");
-		else import(/* webpackPrefetch: true */ "../themes/express.css");
-	} catch (e) {
-		console.warn(e);
-	}
-
 	let iconSize = "75";
 	switch (size) {
 		case "s":
@@ -65,7 +54,6 @@ export const Template = ({
 			style=${ifDefined(styleMap(style))}
 		>
 			${Textfield({
-				...globals,
 				size,
 				type: "number",
 				min: "-2",
@@ -78,28 +66,24 @@ export const Template = ({
 				customClasses: [`${rootClass}-textfield`],
 				customInputClasses: [`${rootClass}-input`],
 			})}
-			${hideStepper
-				? ""
-				: html`<span class="${rootClass}-buttons">
-						${InfieldButton({
-							...globals,
-							size,
-							customClasses: [`${rootClass}-button`],
-							iconName: `ChevronUp${iconSize}`,
-							isDisabled,
-							isQuiet,
-							position: "top"
-						})}
-						${InfieldButton({
-							...globals,
-							size,
-							customClasses: [`${rootClass}-button`],
-							iconName: `ChevronDown${iconSize}`,
-							isDisabled,
-							isQuiet,
-							position: "bottom"
-						})}
-				  </span>`}
+			${when(!hideStepper, () => html`<span class="${rootClass}-buttons">
+                ${InfieldButton({
+                    size,
+                    customClasses: [`${rootClass}-button`],
+                    iconName: `ChevronUp${iconSize}`,
+                    isDisabled,
+                    isQuiet,
+                    position: "top"
+                })}
+                ${InfieldButton({
+                    size,
+                    customClasses: [`${rootClass}-button`],
+                    iconName: `ChevronDown${iconSize}`,
+                    isDisabled,
+                    isQuiet,
+                    position: "bottom"
+                })}
+        </span>`)}
 		</div>
 	`;
 };

@@ -14,24 +14,35 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "main": "dist/index.css",
-  "scripts": {
-    "build": "gulp"
-  },
   "peerDependencies": {
+    "@spectrum-css/checkbox": ">=8",
+    "@spectrum-css/fieldgroup": ">=4",
     "@spectrum-css/icon": ">=4",
+    "@spectrum-css/picker": ">=7",
+    "@spectrum-css/radio": ">=8",
+    "@spectrum-css/stepper": ">=5",
+    "@spectrum-css/textfield": ">=6",
     "@spectrum-css/tokens": ">=13"
   },
-  "devDependencies": {
-    "@spectrum-css/checkbox": "^8.0.1",
-    "@spectrum-css/component-builder-simple": "^2.0.18",
-    "@spectrum-css/fieldgroup": "^4.0.79",
-    "@spectrum-css/icon": "^4.0.4",
-    "@spectrum-css/picker": "^7.0.15",
-    "@spectrum-css/radio": "^8.0.15",
-    "@spectrum-css/stepper": "^5.0.3",
-    "@spectrum-css/textfield": "^6.0.27",
-    "@spectrum-css/tokens": "^13.0.3",
-    "gulp": "^4.0.0"
+  "peerDependenciesMeta": {
+    "@spectrum-css/checkbox": {
+      "optional": true
+    },
+    "@spectrum-css/fieldgroup": {
+      "optional": true
+    },
+    "@spectrum-css/picker": {
+      "optional": true
+    },
+    "@spectrum-css/radio": {
+      "optional": true
+    },
+    "@spectrum-css/stepper": {
+      "optional": true
+    },
+    "@spectrum-css/textfield": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"

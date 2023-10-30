@@ -1,68 +1,54 @@
-const { resolve, relative, basename, sep } = require("path");
-const { existsSync } = require("fs");
-const warnCleaner = require("postcss-warn-cleaner");
-
-const simpleBuilder = require("@spectrum-css/component-builder-simple/css/processors.js");
-const legacyBuilder = require("@spectrum-css/component-builder/css/processors.js");
-
-module.exports = (ctx) => {
-	let plugins = [];
-	const componentPath = resolve(__dirname, "../components");
-	const folderName = ctx.file.includes('node_modules') ? relative(resolve(__dirname, "../../node_modules/@spectrum-css"), ctx.file)?.split(sep)?.shift() : relative(componentPath, ctx.file).split("/")[0];
-	const pkgPath = resolve(componentPath, folderName, "package.json");
-
-	if (["expressvars", "vars", "tokens"].includes(folderName)) {
-		const isExpress = folderName === "expressvars";
-		const modifier = basename(ctx.file, ".css").startsWith("spectrum")
-			? basename(ctx.file, ".css")
-					.replace("spectrum-", "")
-					.replace("global", "")
-			: "";
-
-		plugins = [
-			require("postcss-import")(),
-			require("postcss-selector-replace")({
-				before: [":root"],
-				after: [
-					`${isExpress ? ".spectrum--express" : ""}${
-						modifier ? `.spectrum--${modifier}` : ""
-					}${!isExpress && !modifier ? ".spectrum" : ""}`,
-				],
-			}),
-			...(isExpress
-				? [
-						require("postcss-prefix-selector")({
-							prefix: ".spectrum--express",
-							transform(_prefix, selector, prefixedSelector) {
-								if (selector.startsWith(".spectrum--express")) return selector;
-								/* Smoosh the selectors together b/c they co-exist */
-								return prefixedSelector.replace(" ", "");
-							},
-						}),
-				  ]
-				: []),
-		];
-	} else if (existsSync(pkgPath)) {
-		const { devDependencies } = require(pkgPath);
-		if (
-			Object.keys(devDependencies).includes("@spectrum-css/component-builder")
-		) {
-			plugins.push(...legacyBuilder.processors);
-		} else {
-			if (ctx.file.split("/").includes("themes")) {
-				plugins.push(...simpleBuilder.getProcessors({ noSelectors: false }));
-			} else {
-				plugins.push(...simpleBuilder.getProcessors());
-			}
-		}
-	}
-
-	// For storybook, add a tool to suppress autoprefixer warnings
-	plugins.push(
-		warnCleaner({
-			ignoreFiles: "**/*.css",
-		})
-	);
-
-	return { plugins };
-};
+module.exports = (ctx) => ({
+    ...ctx,
+    plugins: {
+        "postcss-import": {},
+        "postcss-preset-env":
+            ctx.mode !== "PRODUCTION"
+                ? {
+                      stage: 3,
+                      env: ctx.mode,
+                      features: {
+                          "logical-properties-and-values": false,
+                          clamp: true,
+                          "color-functional-notation": true,
+                          "dir-pseudo-class": { preserve: true },
+                          "nesting-rules": false, // { noIsPseudoSelector: true },
+                          // "focus-visible-pseudo-class": true,
+                          // https://github.com/jsxtools/focus-within
+                          "focus-within-pseudo-class": true,
+                          "font-format-keywords": true,
+                          "not-pseudo-class": true,
+                          "opacity-percentage": true,
+                          // https://github.com/csstools/postcss-plugins/tree/main/plugins/css-prefers-color-scheme
+                          "prefers-color-scheme-query": true,
+                      },
+                  }
+                : {},
+        "postcss-discard-comments": {
+            removeAll: true,
+        },
+        cssnano: {
+            preset: [
+                "lite",
+                {
+                    normalizeWhitespace: false,
+                    discardComments: true,
+                    orderedValues: {},
+                    mergeRules: {},
+                    uniqueSelectors: {},
+                    cssDeclarationSorter: {},
+                },
+            ],
+        },
+        /* Ensure the license is at the top of the file */
+        "postcss-licensing": {
+            filename: "COPYRIGHT",
+            cwd: __dirname,
+            skipIfEmpty: true,
+        },
+        "@spectrum-tools/postcss-prettier": {},
+        "postcss-reporter": {
+            clearReportedMessages: true,
+        },
+    },
+});

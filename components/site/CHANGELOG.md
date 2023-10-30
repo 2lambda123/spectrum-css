@@ -6,7 +6,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 <a name="4.0.1"></a>
 ##4.0.1
 🗓
-2023-11-13 • 📝 [Commits](https://github.com/adobe/spectrum-css/compare/@spectrum-css/site@4.0.0...@spectrum-css/site@4.0.1)
+2023-11-10 • 📝 [Commits](https://github.com/adobe/spectrum-css/compare/@spectrum-css/site@4.0.0...@spectrum-css/site@4.0.1)
 
 ### 🔙 Reverts
 
