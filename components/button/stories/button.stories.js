@@ -79,6 +79,16 @@ export default {
 			options: ["white", "black"],
 			control: "select",
 		},
+		showIconOnlyButton: {
+			table: {
+				disable: true,
+			},
+		},
+		showOneButtonPerLine: {
+			table: {
+				disable: true,
+			},
+		},
 	},
 	args: {
 		rootClass: "spectrum-Button",
@@ -87,6 +97,8 @@ export default {
 		variant: "accent",
 		treatment: "fill",
 		isDisabled: false,
+		showIconOnlyButton: true,
+		showOneButtonPerLine: false,
 	},
 	parameters: {
 		actions: {
@@ -100,42 +112,57 @@ export default {
 	},
 };
 
+/**
+ * Multiple button variations displayed in one story template.
+ * Used as the base template for the stories.
+ */
 const CustomButton = ({
 	iconName,
 	staticColor,
+	showOneButtonPerLine,
+	showIconOnlyButton,
 	customStyles = {},
 	...args
 }) => {
+	// Optional wrapper for each button, to assist with the testing of wrapping text.
+	const ButtonWrap = (content) => {
+		const buttonWrapStyles = {
+			'margin-block': '15px',
+			'max-width': '480px',
+		};
+		return showOneButtonPerLine ? html`<div style=${styleMap(buttonWrapStyles)}>${content}</div>` : content;
+	};
+
 	return html`
 		<div
-      		style=${ifDefined(styleMap({
+			style=${ifDefined(styleMap({
 				padding: "1rem",
 				backgroundColor: staticColor === "white" ? "rgb(15, 121, 125)" : staticColor === "black" ? "rgb(181, 209, 211)" : undefined,
 				...customStyles
 			}))}
 		>
-			${Template({
+			${ButtonWrap(Template({
 				...args,
 				staticColor,
 				iconName: undefined,
-			})}
-			${Template({
+			}))}
+			${ButtonWrap(Template({
 				...args,
 				staticColor,
 				iconName: undefined,
 				treatment: "outline",
-			})}
-			${Template({
+			}))}
+			${ButtonWrap(Template({
 				...args,
 				staticColor,
 				iconName: iconName ?? "Edit",
-			})}
-			${Template({
+			}))}
+			${showIconOnlyButton ? ButtonWrap(Template({
 				...args,
 				staticColor,
 				hideLabel: true,
 				iconName: iconName ?? "Edit",
-			})}
+			})) : ''}
 		</div>
 	`;
 };
@@ -183,4 +210,12 @@ WithForcedColors.parameters = {
 };
 WithForcedColors.args = {
 	iconName: "Actions",
+};
+
+export const Wrapping = CustomButton.bind({});
+Wrapping.args = {
+	showOneButtonPerLine: true,
+	showIconOnlyButton: false,
+	variant: "accent",
+	label: "An example of text overflow behavior within the button component. When the button text is too long for the horizontal space available, it wraps to form another line.",
 };
