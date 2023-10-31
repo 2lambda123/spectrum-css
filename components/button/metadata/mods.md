@@ -35,6 +35,9 @@
 | `--mod-button-margin-right`                |
 | `--mod-button-min-width`                   |
 | `--mod-button-padding-label-to-icon`       |
+| `--mod-button-text-align`                  |
+| `--mod-button-text-align-with-icon`        |
+| `--mod-button-top-to-icon`                 |
 | `--mod-button-top-to-text`                 |
 | `--mod-focus-indicator-gap`                |
 | `--mod-static-black-focus-indicator-color` |
