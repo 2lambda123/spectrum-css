@@ -1,0 +1,4 @@
+{
+	"name": "storybook",
+	"includedScripts": ["clean", "test", "test:scope", "storybook", "build"]
+}

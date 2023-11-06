@@ -1,6 +1,5 @@
 const { resolve, relative, basename, sep } = require("path");
 const { existsSync } = require("fs");
-const warnCleaner = require("postcss-warn-cleaner");
 
 const simpleBuilder = require("@spectrum-css/component-builder-simple/css/processors.js");
 const legacyBuilder = require("@spectrum-css/component-builder/css/processors.js");
@@ -11,38 +10,7 @@ module.exports = (ctx) => {
 	const folderName = ctx.file.includes('node_modules') ? relative(resolve(__dirname, "../../node_modules/@spectrum-css"), ctx.file)?.split(sep)?.shift() : relative(componentPath, ctx.file).split("/")[0];
 	const pkgPath = resolve(componentPath, folderName, "package.json");
 
-	if (["expressvars", "vars", "tokens"].includes(folderName)) {
-		const isExpress = folderName === "expressvars";
-		const modifier = basename(ctx.file, ".css").startsWith("spectrum")
-			? basename(ctx.file, ".css")
-					.replace("spectrum-", "")
-					.replace("global", "")
-			: "";
-
-		plugins = [
-			require("postcss-import")(),
-			require("postcss-selector-replace")({
-				before: [":root"],
-				after: [
-					`${isExpress ? ".spectrum--express" : ""}${
-						modifier ? `.spectrum--${modifier}` : ""
-					}${!isExpress && !modifier ? ".spectrum" : ""}`,
-				],
-			}),
-			...(isExpress
-				? [
-						require("postcss-prefix-selector")({
-							prefix: ".spectrum--express",
-							transform(_prefix, selector, prefixedSelector) {
-								if (selector.startsWith(".spectrum--express")) return selector;
-								/* Smoosh the selectors together b/c they co-exist */
-								return prefixedSelector.replace(" ", "");
-							},
-						}),
-				  ]
-				: []),
-		];
-	} else if (existsSync(pkgPath)) {
+	if (existsSync(pkgPath)) {
 		const { devDependencies } = require(pkgPath);
 		if (
 			Object.keys(devDependencies).includes("@spectrum-css/component-builder")
@@ -55,14 +23,25 @@ module.exports = (ctx) => {
 				plugins.push(...simpleBuilder.getProcessors());
 			}
 		}
+	} else {
+		plugins.push(...simpleBuilder.getProcessors());
 	}
 
-	// For storybook, add a tool to suppress autoprefixer warnings
-	plugins.push(
-		warnCleaner({
-			ignoreFiles: "**/*.css",
-		})
-	);
+	if (folderName.includes("expressvars") || ctx.file.includes("express")) {
+		plugins.push(
+			require("postcss-prefix-selector")({
+				prefix: ".spectrum.spectrum--express",
+				transform(_prefix, selector, prefixedSelector) {
+					/* Smoosh the selectors together b/c they co-exist */
+					if ([".spectrum", ".spectrum--express", ".spectrum--medium", ".spectrum--large", ".spectrum--light", ".spectrum--lightest", ".spectrum--dark", ".spectrum--darkest"].includes(selector)) {
+						return prefixedSelector.replace(" ", "");
+					}
+
+					return prefixedSelector;
+				},
+			}),
+		);
+	}
 
 	return { plugins };
 };

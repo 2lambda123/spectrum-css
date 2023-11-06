@@ -1,12 +1,12 @@
-// Import the component markup template
 import { Template } from "./template";
+
+import { isDisabled, isInvalid, isSelected } from "@spectrum-css/preview/types/states.js";
 
 import { default as IconStories } from "@spectrum-css/icon/stories/icon.stories.js";
 
+/** A tag categorizes content. They can represent keywords or people, and are grouped to describe an item or a search request. */
 export default {
 	title: "Components/Tag",
-	description:
-		"A tag categorizes content. They can represent keywords or people, and are grouped to describe an item or a search request.",
 	component: "Tag",
 	argTypes: {
 		size: {
@@ -71,33 +71,9 @@ export default {
 			},
 			control: "boolean",
 		},
-		isInvalid: {
-			name: "Invalid",
-			type: { name: "boolean" },
-			table: {
-				type: { summary: "boolean" },
-				category: "State",
-			},
-			control: "boolean",
-		},
-		isDisabled: {
-			name: "Disabled",
-			type: { name: "boolean" },
-			table: {
-				type: { summary: "boolean" },
-				category: "State",
-			},
-			control: "boolean",
-		},
-		isSelected: {
-			name: "Selected",
-			type: { name: "boolean" },
-			table: {
-				type: { summary: "boolean" },
-				category: "State",
-			},
-			control: "boolean",
-		},
+		isInvalid,
+		isDisabled,
+		isSelected,
 		hasClearButton: {
 			name: "Clear button",
 			description: "True if a button is present to clear the tag.",
@@ -130,7 +106,7 @@ export default {
 		status: {
 			type: process.env.MIGRATED_PACKAGES.includes("tag")
 				? "migrated"
-				: undefined,
+				: "legacy",
 		},
 	},
 };

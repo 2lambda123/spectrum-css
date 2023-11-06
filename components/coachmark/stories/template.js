@@ -3,15 +3,14 @@ import { classMap } from "lit/directives/class-map.js";
 
 import { Template as Button } from "@spectrum-css/button/stories/template.js";
 
-import "../index.css";
-import "../skin.css";
+import "@spectrum-css/coachmark";
 
 export const Template = ({
 	rootClass = "spectrum-CoachMark",
 	isQuiet = false,
 	withPopover = false,
 	variant,
-	...globals
+
 }) => {
 	return html`
 		<div
@@ -37,7 +36,7 @@ export const Template = ({
 					</div>
 					<div class="${rootClass}Popover-footer">
 						${Button({
-							...globals,
+
 							size: "m",
 							variant: "primary",
 							label: "Okay",

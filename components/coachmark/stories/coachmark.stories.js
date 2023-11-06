@@ -1,10 +1,8 @@
-// Import the component markup template
 import { Template } from "./template";
 
+/** The coach mark component can be used to bring added attention to specific parts of a page. */
 export default {
 	title: "Components/Coach mark",
-	description:
-		"The coach mark component can be used to bring added attention to specific parts of a page.",
 	component: "CoachMark",
 	argTypes: {
 		withPopover: {
@@ -48,7 +46,7 @@ export default {
 		status: {
 			type: process.env.MIGRATED_PACKAGES.includes("coachmark")
 				? "migrated"
-				: undefined,
+				: "legacy",
 		},
 	},
 };
