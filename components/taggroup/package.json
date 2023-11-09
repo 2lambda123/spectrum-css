@@ -1,0 +1,37 @@
+{
+  "name": "@spectrum-css/taggroup",
+  "version": "4.0.10",
+  "description": "The Spectrum CSS tag group component",
+  "license": "Apache-2.0",
+  "author": "Adobe",
+  "homepage": "https://opensource.adobe.com/spectrum-css/taggroup",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adobe/spectrum-css.git",
+    "directory": "components/taggroup"
+  },
+  "bugs": {
+    "url": "https://github.com/adobe/spectrum-css/issues"
+  },
+  "main": "dist/index-vars.css",
+  "scripts": {
+    "build": "gulp"
+  },
+  "peerDependencies": {
+    "@spectrum-css/clearbutton": ">=5",
+    "@spectrum-css/tag": ">=8",
+    "@spectrum-css/tokens": ">=11"
+  },
+  "devDependencies": {
+    "@spectrum-css/avatar": "^6.0.58",
+    "@spectrum-css/clearbutton": "^5.0.11",
+    "@spectrum-css/component-builder-simple": "^2.0.17",
+    "@spectrum-css/icon": "^4.0.3",
+    "@spectrum-css/tag": "^8.0.12",
+    "@spectrum-css/tokens": "^13.0.0",
+    "gulp": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
