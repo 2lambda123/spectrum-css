@@ -24,6 +24,8 @@ export const MenuItem = ({
   isDrillIn = false,
   isCollapsible = false,
   isOpen = false,
+  shouldTruncate = false,
+  inlineSize = false,
   role = "menuitem",
   items = [],
   size,
@@ -51,6 +53,7 @@ export const MenuItem = ({
       role=${ifDefined(role)}
       aria-selected=${isSelected ? "true" : "false"}
       aria-disabled=${isDisabled ? "true" : "false"}
+      style=${ifDefined(inlineSize) ? `inline-size: ${inlineSize};` : ""}
       tabindex=${ifDefined(!isDisabled ? "0" : undefined)}>
       ${isCollapsible
         ? Icon({
@@ -80,6 +83,7 @@ export const MenuItem = ({
         ? html`<span class=${classMap({
           [`${rootClass}Label`]: true,
           ['spectrum-Switch-label']: hasActions,
+          [`spectrum-Menu-itemLabel--truncate`]: shouldTruncate,
           })}>
           ${label}
         </span>`
