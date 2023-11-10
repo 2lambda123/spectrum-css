@@ -14,9 +14,6 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "main": "dist/index.css",
-  "scripts": {
-    "build": "gulp"
-  },
   "peerDependencies": {
     "@spectrum-css/icon": ">=4",
     "@spectrum-css/tokens": ">=13"
@@ -30,8 +27,7 @@
     "@spectrum-css/radio": "^8.0.14",
     "@spectrum-css/stepper": "^5.0.2",
     "@spectrum-css/textfield": "^6.0.26",
-    "@spectrum-css/tokens": "^13.0.0",
-    "gulp": "^4.0.0"
+    "@spectrum-css/tokens": "^13.0.0"
   },
   "publishConfig": {
     "access": "public"

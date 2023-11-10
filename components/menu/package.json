@@ -14,15 +14,12 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "main": "dist/index.css",
-  "scripts": {
-    "build": "gulp"
-  },
   "peerDependencies": {
     "@spectrum-css/checkbox": ">=7",
     "@spectrum-css/divider": ">=2",
     "@spectrum-css/icon": ">=4",
     "@spectrum-css/switch": ">=4",
-    "@spectrum-css/tokens": ">=11.1.0"
+    "@spectrum-css/tokens": ">=12"
   },
   "devDependencies": {
     "@spectrum-css/checkbox": "^8.0.0",
@@ -30,8 +27,7 @@
     "@spectrum-css/divider": "^2.1.31",
     "@spectrum-css/icon": "^4.0.3",
     "@spectrum-css/switch": "^4.0.13",
-    "@spectrum-css/tokens": "^13.0.0",
-    "gulp": "^4.0.0"
+    "@spectrum-css/tokens": "^13.0.0"
   },
   "publishConfig": {
     "access": "public"

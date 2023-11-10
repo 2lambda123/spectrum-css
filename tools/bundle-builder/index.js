@@ -149,23 +149,6 @@ let buildStandalone = gulp.series(
 	)
 );
 
-// run buildLite on a selected set of packages that depend on commons
-// yay: faster than 'rebuild everything' approach
-// boo: must add new packages here as commons grows
-function buildDepenenciesOfCommons() {
-	const dependentComponents = [
-		`${dirs.components}/actionbutton`,
-		`${dirs.components}/button`,
-		`${dirs.components}/clearbutton`,
-		`${dirs.components}/closebutton`,
-		`${dirs.components}/infieldbutton`,
-		`${dirs.components}/logicbutton`,
-		`${dirs.components}/picker`,
-		`${dirs.components}/pickerbutton`,
-	];
-	return subrunner.runTaskOnPackages("buildLite", dependentComponents);
-}
-
 function copyPackages() {
 	return gulp
 		.src([
@@ -197,28 +180,14 @@ function buildIfTopLevel() {
 
 let build = gulp.series(buildIfTopLevel(), vars.copyVars);
 
-let buildLite = gulp.series(function buildComponentsLite() {
-	return subrunner.runTaskOnAllComponents("buildLite");
-}, buildDocs);
-
-let buildMedium = gulp.series(function buildComponentsLite() {
-	return subrunner.runTaskOnAllComponents("buildMedium");
-}, buildDocs);
-
-let buildHeavy = gulp.series(function buildComponentsLite() {
-	return subrunner.runTaskOnAllComponents("buildHeavy");
-}, buildDocs);
-
 let devTask;
 if (process.cwd() === dirs.topLevel) {
 	// Build all packages if at the top level
-	devTask = gulp.series(buildLite, dev.watch);
+	devTask = gulp.series(build, dev.watch);
 } else {
 	// Otherwise, just start watching
 	devTask = gulp.series(buildDocs, dev.watch);
 }
-
-exports.devHeavy = gulp.series(buildHeavy, dev.watch);
 
 exports.copyVars = vars.copyVars;
 
@@ -227,11 +196,9 @@ exports.buildUniqueVars = vars.buildUnique;
 exports.buildComponents = subrunner.buildComponents;
 exports.buildCombined = buildCombined;
 exports.buildStandalone = buildStandalone;
-exports.buildLite = buildLite;
 exports.buildDocs = buildDocs;
-exports.buildDepenenciesOfCommons = buildDepenenciesOfCommons;
 exports.copyPackages = copyPackages;
 exports.dev = devTask;
 exports.build = build;
 exports.watch = dev.watch;
-exports.default = buildMedium;
+exports.default = build;

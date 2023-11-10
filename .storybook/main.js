@@ -33,7 +33,7 @@ module.exports = {
 		"@whitespace/storybook-addon-html",
 		// https://storybook.js.org/addons/@etchteam/storybook-addon-status
 		"@etchteam/storybook-addon-status",
-    "storybook-addon-pseudo-states",
+    	"storybook-addon-pseudo-states",
 		// https://github.com/storybookjs/storybook/tree/next/code/addons/interactions
 		"@storybook/addon-interactions"
 	],
@@ -44,8 +44,8 @@ module.exports = {
 		MIGRATED_PACKAGES: componentPkgs.filter((dir) => {
 			const pkg = require(resolve(componentsPath, dir, "package.json"));
 			if (
-				pkg.devDependencies &&
-				pkg.devDependencies["@spectrum-css/component-builder-simple"]
+				pkg.peerDependencies &&
+				pkg.peerDependencies["@spectrum-css/tokens"]
 			) {
 				return true;
 			}

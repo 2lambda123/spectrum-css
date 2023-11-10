@@ -14,9 +14,6 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "main": "dist/index-vars.css",
-  "scripts": {
-    "build": "gulp"
-  },
   "peerDependencies": {
     "@spectrum-css/button": ">=10",
     "@spectrum-css/icon": ">=4",
@@ -30,8 +27,7 @@
     "@spectrum-css/divider": "^2.1.31",
     "@spectrum-css/icon": "^4.0.3",
     "@spectrum-css/modal": "^4.0.1",
-    "@spectrum-css/tokens": "^13.0.0",
-    "gulp": "^4.0.0"
+    "@spectrum-css/tokens": "^13.0.0"
   },
   "publishConfig": {
     "access": "public"

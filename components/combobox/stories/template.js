@@ -3,9 +3,9 @@ import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 import { Template as Menu } from "@spectrum-css/menu/stories/template.js";
-import { Template as TextField } from "@spectrum-css/textfield/stories/template.js";
-import { Template as Popover } from "@spectrum-css/popover/stories/template.js";
 import { Template as PickerButton } from "@spectrum-css/pickerbutton/stories/template.js";
+import { Template as Popover } from "@spectrum-css/popover/stories/template.js";
+import { Template as TextField } from "@spectrum-css/textfield/stories/template.js";
 
 import { useArgs, useGlobals } from "@storybook/client-api";
 
@@ -14,7 +14,6 @@ import "../index.css";
 export const Template = ({
 	rootClass = "spectrum-Combobox",
 	id,
-	content,
 	customClasses = [],
 	size = "m",
 	isOpen = true,

@@ -18,7 +18,6 @@ const dirs = require("../lib/dirs");
 
 const docs = require("../docs");
 const subrunner = require("../subrunner");
-const bundleBuilder = require("../index.js");
 
 function serve() {
 	let PORT = 3000;
@@ -149,30 +148,17 @@ function watchSite() {
 	);
 }
 
-function watchCommons() {
-	gulp.watch(
-		[`${dirs.components}/commons/*.css`],
-		gulp.series(
-			bundleBuilder.buildDepenenciesOfCommons,
-			bundleBuilder.copyPackages,
-			reload
-		)
-	);
-}
-
 function watch() {
 	serve();
 
-	watchCommons();
-
 	watchWithinPackages(
 		`${dirs.components}/*/{index,skin}.css`,
-		"buildMedium",
+		"build",
 		"*.css"
 	);
 	watchWithinPackages(
 		`${dirs.components}/*/themes/{spectrum,express}.css`,
-		"buildMedium",
+		"build",
 		"*.css"
 	);
 
@@ -180,10 +166,10 @@ function watch() {
 		[
 			`${dirs.components}/*/metadata/*.yml`,
 		],
-		(changedFile, package, done) => {
+		(_, package, done) => {
 			// Do this as gulp tasks to avoid premature stream termination
 			try {
-				let result = gulp.series(
+				gulp.series(
 					// Get data first so nav builds
 					function buildSite_getData() {
 						logger.debug(`Building nav data for ${package}`);

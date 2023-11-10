@@ -61,16 +61,6 @@
   resolved "https://registry.yarnpkg.com/@adobe/spectrum-css-workflow-icons/-/spectrum-css-workflow-icons-1.5.4.tgz#0e09ff519c36139176c3ba3ce617a995c9032f67"
   integrity sha512-sZ19YOLGw5xTZzCEkVXPjf53lXVzo063KmDTJjpSjy/XLVsF+RaX0b436SfSM4hsIUZ7n27+UsbOvzFaFjcYXw==
 
-"@adobe/spectrum-express-tokens-deprecated@^1.0.0-beta.35":
-  version "1.0.0-beta.35"
-  resolved "https://registry.yarnpkg.com/@adobe/spectrum-express-tokens-deprecated/-/spectrum-express-tokens-deprecated-1.0.0-beta.35.tgz#f45d272ccd64c43cbca086c112988f0949fbdb29"
-  integrity sha512-7DfRA/dR/8lo0+v/jYc8pCkADriRHN2EaXcUcVRwjmmeFwONRfYgpC1N9d/drvtzVjSo0q42Z1Bj12QKeFA/Zw==
-
-"@adobe/spectrum-tokens-deprecated@^11.8.0":
-  version "11.8.0"
-  resolved "https://registry.yarnpkg.com/@adobe/spectrum-tokens-deprecated/-/spectrum-tokens-deprecated-11.8.0.tgz#7edf6f7b7e3c22581e0732c8de97fa0a68ed66b9"
-  integrity sha512-LW2SA/8VhW868tEcgIcugx7xdtgFG3KiUoEz+4s2nHTdmKj0h2A9pnTNplVTNAMq2uPSfp6wKKvQNNnMSIXqCg==
-
 "@adobe/spectrum-tokens@12.22.1":
   version "12.22.1"
   resolved "https://registry.yarnpkg.com/@adobe/spectrum-tokens/-/spectrum-tokens-12.22.1.tgz#39ac4ca2110eec1629043e0535cca0b171c2bc27"
@@ -2128,6 +2118,15 @@
   resolved "https://registry.yarnpkg.com/@nx/nx-win32-x64-msvc/-/nx-win32-x64-msvc-17.0.3.tgz#773639f3d271019fa4b38417f7ed23f50359bc78"
   integrity sha512-SJssAOyUM1IW9t84/Uzau9JHo14hnG5mxvcrborNGlLq+WnP0jzISVs7gvV2xWZ9j1JemxA5KLbkMuIkJyR6qQ==
 
+"@nxkit/style-dictionary@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@nxkit/style-dictionary/-/style-dictionary-3.0.2.tgz#c68988f7beef7b55133bc40751478a4754d8827c"
+  integrity sha512-prnGV1/ZFMWqUf5CXc3OMbZ0syxIpCcuyWWMGxNzrEztY3Mxo7OM8EZ+Y+tY5yr7jBLNakzRYPjlDCopz01PDA==
+  dependencies:
+    "@phenomnomnominal/tsquery" "^5.0.0"
+    fs-extra "^11.1.0"
+    ts-node "10.9.1"
+
 "@octokit/auth-token@^3.0.0":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@octokit/auth-token/-/auth-token-3.0.4.tgz#70e941ba742bdd2b49bdb7393e821dea8520a3db"
@@ -2345,6 +2344,13 @@
   dependencies:
     node-addon-api "^3.2.1"
     node-gyp-build "^4.3.0"
+
+"@phenomnomnominal/tsquery@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@phenomnomnominal/tsquery/-/tsquery-5.0.1.tgz#a2a5abc89f92c01562a32806655817516653a388"
+  integrity sha512-3nVv+e2FQwsW8Aw6qTU6f+1rfcJ3hrcnvH/mu9i8YhxO+9sqbOfpL8m6PbET5+xKOlz/VSbp0RoYWYCtIsnmuA==
+  dependencies:
+    esquery "^1.4.0"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
@@ -2689,6 +2695,21 @@
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
   integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
+
+"@spectrum-css/expressvars@^3.0.9":
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/expressvars/-/expressvars-3.0.9.tgz#72678e0845c240bc9cb6b4d828f20806810f4cab"
+  integrity sha512-mnxdnF2NGNdba+3OomwFURPG0XqNRD+S2cmX0ARYnia9lv84HpzhbSoGuqmQO4+4+dXe46zYjnKRe2L8oJM/zw==
+
+"@spectrum-css/tokens@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/tokens/-/tokens-12.0.0.tgz#dccc297cf62be60ddc23c15e9805acf664b38613"
+  integrity sha512-P4+AieUf60i3TRa4fnD+rlSH52ZQtimsEUMCdHReYO3wUGdLWdLln7rtZ0fVh4mXJ4z3o75MEbE4PYYklqtOmA==
+
+"@spectrum-css/vars@^9.0.8":
+  version "9.0.8"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/vars/-/vars-9.0.8.tgz#6af3bcdace903b8461f5fcd4c9aa23e70128a456"
+  integrity sha512-rGfd7jqXOdR69bEjrRP58ynuIeJU0czPfwQvzhtCzg7jKVukV+efNHqrs086sC6xutB3W4TF71K/dZMr3oyTyg==
 
 "@storybook/addon-a11y@^7.5.1":
   version "7.5.3"
@@ -7815,6 +7836,13 @@ esprima@^4.0.0, esprima@~4.0.0:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
+esquery@^1.4.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/esquery/-/esquery-1.5.0.tgz#6ce17738de8577694edd7361c57182ac8cb0db0b"
+  integrity sha512-YQLXUplAwJgCydQ78IMJywZCceoqk1oH01OERdSAJc/7U2AylwjhSCLDEtqwg811idIS/9fIU5GjG73IgjKMVg==
+  dependencies:
+    estraverse "^5.1.0"
+
 esrecurse@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.3.0.tgz#7ad7964d679abb28bee72cec63758b1c5d2c9921"
@@ -7827,7 +7855,7 @@ estraverse@^4.1.1:
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
   integrity sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==
 
-estraverse@^5.2.0:
+estraverse@^5.1.0, estraverse@^5.2.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-5.3.0.tgz#2eea5290702f26ab8fe5370370ff86c965d21123"
   integrity sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==
@@ -8071,6 +8099,17 @@ fast-glob@^3.0.3, fast-glob@^3.2.9, fast-glob@^3.3.0, fast-glob@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.3.1.tgz#784b4e897340f3dbbef17413b3f11acf03c874c4"
   integrity sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==
+  dependencies:
+    "@nodelib/fs.stat" "^2.0.2"
+    "@nodelib/fs.walk" "^1.2.3"
+    glob-parent "^5.1.2"
+    merge2 "^1.3.0"
+    micromatch "^4.0.4"
+
+fast-glob@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.3.2.tgz#a904501e57cfdd2ffcded45e99a54fef55e46129"
+  integrity sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==
   dependencies:
     "@nodelib/fs.stat" "^2.0.2"
     "@nodelib/fs.walk" "^1.2.3"
@@ -13631,6 +13670,12 @@ postcss-combine-duplicated-selectors@^10.0.3:
   dependencies:
     postcss-selector-parser "^6.0.4"
 
+"postcss-custom-properties-mapping@file:./tools/component-builder/plugins/postcss-custom-properties-mapping":
+  version "0.0.0"
+
+"postcss-custom-properties-passthrough@file:./tools/component-builder/plugins/postcss-custom-properties-passthrough":
+  version "0.0.0"
+
 postcss-dir-pseudo-class@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/postcss-dir-pseudo-class/-/postcss-dir-pseudo-class-5.0.0.tgz#6e3a4177d0edb3abcc85fdb6fbb1c26dabaeaba2"
@@ -13804,6 +13849,9 @@ postcss-nested@^3.0.0:
     postcss "^6.0.14"
     postcss-selector-parser "^3.1.1"
 
+"postcss-notnested@file:./tools/component-builder/plugins/postcss-notnested":
+  version "0.0.0"
+
 postcss-prefix-selector@^1.16.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/postcss-prefix-selector/-/postcss-prefix-selector-1.16.0.tgz#ad5b56f9a73a2c090ca7161049632c9d89bcb404"
@@ -13891,6 +13939,9 @@ postcss-svg@^3.0.0:
     svgo "^1.1.1"
     xmldoc "^1.1.2"
 
+"postcss-transform-logical@file:./tools/component-builder/plugins/postcss-transform-logical":
+  version "0.0.0"
+
 postcss-value-parser@^3.2.3, postcss-value-parser@^3.3.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.1.tgz#9ff822547e2893213cf1c30efa51ac5fd1ba8281"
@@ -13919,6 +13970,9 @@ postcss-values-parser@^3.1.1:
     is-url-superb "^3.0.0"
     postcss "^7.0.5"
     url-regex "^5.0.0"
+
+"postcss-varsonly@file:./tools/component-builder/plugins/postcss-varsonly":
+  version "0.0.0"
 
 postcss-warn-cleaner@^0.1.9:
   version "0.1.9"
@@ -16775,7 +16829,7 @@ ts-dedent@^2.0.0, ts-dedent@^2.2.0:
   resolved "https://registry.yarnpkg.com/ts-dedent/-/ts-dedent-2.2.0.tgz#39e4bd297cd036292ae2394eb3412be63f563bb5"
   integrity sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==
 
-ts-node@^10.8.1:
+ts-node@10.9.1, ts-node@^10.8.1:
   version "10.9.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
   integrity sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==

@@ -14,9 +14,6 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "main": "dist/index-vars.css",
-  "scripts": {
-    "build": "gulp"
-  },
   "peerDependencies": {
     "@spectrum-css/actionbutton": ">=5",
     "@spectrum-css/button": ">=10",
@@ -32,8 +29,7 @@
     "@spectrum-css/icon": "^4.0.3",
     "@spectrum-css/splitbutton": "^6.0.14",
     "@spectrum-css/textfield": "^6.0.26",
-    "@spectrum-css/tokens": "^13.0.0",
-    "gulp": "^4.0.0"
+    "@spectrum-css/tokens": "^13.0.0"
   },
   "publishConfig": {
     "access": "public"

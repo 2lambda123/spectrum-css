@@ -89,6 +89,18 @@
         "inputs": [
           "{workspaceRoot}/storybook-static"
         ]
+      },
+      "start": {
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "{workspaceRoot}/assets",
+          "{workspaceRoot}/decorators",
+          "{workspaceRoot}/*.js",
+          "{workspaceRoot}/*.html",
+          "{projectRoot}/components/*/dist"
+        ]
       }
     },
     "implicitDependencies": [
@@ -100,6 +112,7 @@
       "test",
       "test:scope",
       "storybook",
+      "start",
       "build"
     ]
   }

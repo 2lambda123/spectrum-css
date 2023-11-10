@@ -12,6 +12,8 @@
     "url": "https://github.com/adobe/spectrum-css/issues"
   },
   "dependencies": {
+    "@spectrum-css/expressvars": "^3.0.9",
+    "@spectrum-css/vars": "^9.0.8",
     "autoprefixer": "^6.5.3",
     "browser-sync": "^2.26.14",
     "colors": "^1.4.0",
@@ -25,6 +27,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
     "gulplog": "^1.0.0",
+    "fast-glob": "^3.3.2",
     "js-yaml": "^4.1.0",
     "legacy-postcss-dropdupedvars": "file:../../plugins/legacy-postcss-dropdupedvars",
     "legacy-postcss-dropunusedvars": "file:../../plugins/legacy-postcss-dropunusedvars",
@@ -41,6 +44,11 @@
     "postcss-nested": "^3.0.0",
     "postcss-remapvars": "^1.1.0",
     "postcss-selector-parser": "^6.0.2",
+    "postcss-transform-logical": "file:./plugins/postcss-transform-logical",
+    "postcss-custom-properties-mapping": "file:./plugins/postcss-custom-properties-mapping",
+    "postcss-custom-properties-passthrough": "file:./plugins/postcss-custom-properties-passthrough",
+    "postcss-notnested": "file:./plugins/postcss-notnested",
+    "postcss-varsonly": "file:./plugins/postcss-varsonly",
     "postcss-svg": "^3.0.0",
     "postcss-values-parser": "^3.1.1",
     "pug": "^3.0.1",
@@ -49,7 +57,6 @@
   },
   "peerDependencies": {
     "@spectrum-css/expressvars": ">=3",
-    "@spectrum-css/tokens": ">=13",
     "@spectrum-css/vars": ">=9"
   },
   "peerDependenciesMeta": {
