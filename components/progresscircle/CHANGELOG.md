@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.72"></a>
+##2.0.72
+🗓
+2023-11-13 • 📝 [Commits](https://github.com/adobe/spectrum-css/compare/@spectrum-css/progresscircle@2.0.71...@spectrum-css/progresscircle@2.0.72)
+
+**Note:** Version bump only for package @spectrum-css/progresscircle
+
+<a name="2.0.71"></a>
+##2.0.71
+🗓
+2023-11-09 • 📝 [Commits](https://github.com/adobe/spectrum-css/compare/@spectrum-css/progresscircle@2.0.70...@spectrum-css/progresscircle@2.0.71)
+
+**Note:** Version bump only for package @spectrum-css/progresscircle
+
 <a name="2.0.70"></a>
 ##2.0.70
 🗓

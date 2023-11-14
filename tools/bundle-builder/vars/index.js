@@ -4,15 +4,27 @@ const rename = require("gulp-rename");
 const concat = require("gulp-concat");
 const through = require("through2");
 const postcss = require("postcss");
-const fsp = require("fs").promises;
+
 const dirs = require("../lib/dirs.js");
+
+const destination = path.join(__dirname, "../../../dist");
+
+const varDir = path.dirname(require.resolve("@spectrum-css/vars/package.json", {
+	paths: [process.cwd(), path.join(process.cwd(), "../../")]
+}));
+const expressVarDir = path.dirname(require.resolve("@spectrum-css/expressvars/package.json", {
+	paths: [process.cwd(), path.join(process.cwd(), "../../")]
+}));
+const coreTokensDir = path.dirname(require.resolve("@spectrum-css/tokens/package.json", {
+	paths: [process.cwd(), path.join(process.cwd(), "../../")]
+})) ?? path.dirname(dirs.components, "tokens");
 
 // Uhg share this with component-builder
 function getVarsFromCSS(css) {
 	let variableList = {};
 	let root = postcss.parse(css);
 
-	root.walkRules((rule, ruleIndex) => {
+	root.walkRules((rule) => {
 		rule.walkDecls((decl) => {
 			let matches = decl.value.match(/--[\w-]+/g);
 			if (matches) {
@@ -30,7 +42,7 @@ function getVarValues(css) {
 	let root = postcss.parse(css);
 	let variables = {};
 
-	root.walkRules((rule, ruleIndex) => {
+	root.walkRules((rule) => {
 		rule.walkDecls((decl) => {
 			variables[decl.prop] = decl.value;
 		});
@@ -45,11 +57,11 @@ function getAllVars() {
 
 		gulp
 			.src([
-				`${dirs.components}/vars/css/themes/*.css`,
-				`${dirs.components}/vars/css/scales/*.css`,
-				`${dirs.components}/vars/css/components/*.css`,
-				`${dirs.components}/vars/css/globals/*.css`,
-				`${dirs.components}/tokens/dist/index.css`,
+				`${varDir}/css/themes/*.css`,
+				`${varDir}/css/scales/*.css`,
+				`${varDir}/css/components/*.css`,
+				`${varDir}/css/globals/*.css`,
+				`${coreTokensDir}/dist/index.css`,
 			])
 			.pipe(concat("everything.css"))
 			.pipe(
@@ -117,7 +129,6 @@ function getUsedVars() {
 	});
 }
 
-const varDir = path.join(dirs.components, "vars", "dist");
 function buildUnique() {
 	return new Promise(async (resolve, reject) => {
 		// Read in all variables from components
@@ -125,13 +136,16 @@ function buildUnique() {
 
 		// For each stop and scale, filter by used variables only
 		gulp
-			.src([path.join(varDir, "*.css"), "!" + path.join(varDir, "index.css")])
+			.src([
+				path.join(varDir, "dist/*.css"),
+				"!" + path.join(varDir, "dist/index.css")
+			])
 			.pipe(
 				through.obj(function makeUnique(file, enc, cb) {
 					let css = file.contents.toString();
 					let root = postcss.parse(css);
 
-					root.walkRules((rule, ruleIndex) => {
+					root.walkRules((rule) => {
 						rule.walkDecls((decl) => {
 							if (variableList.indexOf(decl.prop) === -1) {
 								decl.remove();
@@ -150,7 +164,7 @@ function buildUnique() {
 					file.basename += "-unique";
 				})
 			)
-			.pipe(gulp.dest("dist/vars/"))
+			.pipe(gulp.dest(`${destination}/dependencies/@spectrum-css/vars/`))
 			.on("finish", resolve)
 			.on("error", reject);
 	});
@@ -158,22 +172,20 @@ function buildUnique() {
 
 function copyVars() {
 	return gulp
-		.src(path.join(varDir, "spectrum-*.css"))
-		.pipe(gulp.dest("dist/vars/"));
+		.src(path.join(varDir, "dist/spectrum-*.css"))
+		.pipe(gulp.dest(`${destination}/dependencies/@spectrum-css/vars/`));
 }
 
-const expressVarDir = path.join(dirs.components, "expressvars", "dist");
 function copyExpressVars() {
 	return gulp
-		.src(path.join(expressVarDir, "spectrum-*.css"))
-		.pipe(gulp.dest("dist/expressvars/"));
+		.src(path.join(expressVarDir, "dist/spectrum-*.css"))
+		.pipe(gulp.dest(`${destination}/dependencies/@spectrum-css/expressvars/`));
 }
 
-const coreTokensDir = path.join(dirs.components, "tokens", "dist");
 function copyCoreTokens() {
 	return gulp
-		.src(path.join(varDir, "**/*.css"))
-		.pipe(gulp.dest("dist/tokens/"));
+		.src(path.join(coreTokensDir, "dist/**/*.css"))
+		.pipe(gulp.dest(`${destination}/tokens/`));
 }
 
 exports.buildUnique = buildUnique;

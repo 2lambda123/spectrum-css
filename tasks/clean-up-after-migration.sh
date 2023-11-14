@@ -17,11 +17,12 @@
 # test -d "tools" && rm -rf tools
 
 test -d "tools/generator" && rm -rf tools/generator
+test -d "tools/preview" && rm -rf tools/preview
 
 # Legacy tokens packages
-# test -d "components/vars" && rm -rf components/vars
-# test -d "components/expressvars" && rm -rf components/expressvars
-# test -d "components/tokens" && rm -rf components/tokens
+test -d "components/vars" && rm -rf components/vars
+test -d "components/expressvars" && rm -rf components/expressvars
+test -d "components/tokens" && rm -rf components/tokens
 
 # test -d "plugins/legacy-postcss-dropdupedvars" && rm -rf plugins/legacy-postcss-dropdupedvars
 # test -d "plugins/legacy-postcss-dropunusedvars" && rm -rf plugins/legacy-postcss-dropunusedvars

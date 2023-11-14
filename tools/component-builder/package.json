@@ -1,6 +1,6 @@
 {
   "name": "@spectrum-css/component-builder",
-  "version": "4.0.14",
+  "version": "4.0.17",
   "description": "The Spectrum CSS component builder",
   "license": "Apache-2.0",
   "repository": {
@@ -48,7 +48,13 @@
     "through2": "^3.0.1"
   },
   "peerDependencies": {
-    "@spectrum-css/tokens": ">=11",
-    "@spectrum-css/vars": ">=8 <=9"
+    "@spectrum-css/expressvars": ">=3",
+    "@spectrum-css/tokens": ">=13",
+    "@spectrum-css/vars": ">=9"
+  },
+  "peerDependenciesMeta": {
+    "@spectrum-css/expressvars": {
+      "optional": true
+    }
   }
 }

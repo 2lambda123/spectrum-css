@@ -6,6 +6,7 @@ dist-site
 
 temp
 .npmrc*
+.nx
 .env
 .tmp
 npm-debug.log*
@@ -17,7 +18,7 @@ package-lock.json
 .nx
 
 # Storybook build output
-tools/preview/storybook-static
+.storybook/storybook-static
 build-storybook.log
 
 # Chromatic

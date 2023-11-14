@@ -1,6 +1,6 @@
 {
   "name": "@spectrum-css/illustratedmessage",
-  "version": "6.0.26",
+  "version": "6.0.28",
   "description": "The Spectrum CSS illustratedmessage component",
   "license": "Apache-2.0",
   "author": "Adobe",
@@ -18,13 +18,13 @@
     "build": "gulp"
   },
   "peerDependencies": {
-    "@spectrum-css/tokens": ">=10.0.0",
+    "@spectrum-css/tokens": ">=13",
     "@spectrum-css/typography": ">=5"
   },
   "devDependencies": {
-    "@spectrum-css/component-builder-simple": "^2.0.17",
-    "@spectrum-css/tokens": "^12.0.0",
-    "@spectrum-css/typography": "^5.0.45",
+    "@spectrum-css/component-builder-simple": "^2.0.18",
+    "@spectrum-css/tokens": "^13.0.3",
+    "@spectrum-css/typography": "^5.0.47",
     "gulp": "^4.0.0"
   },
   "publishConfig": {
