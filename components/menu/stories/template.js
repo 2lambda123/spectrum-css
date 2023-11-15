@@ -2,6 +2,7 @@ import { html } from "lit";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { styleMap } from "lit/directives/style-map.js";
+import { when } from "lit/directives/when.js";
 
 import { Template as Checkbox } from "@spectrum-css/checkbox/stories/template.js";
 import { Template as Divider } from "@spectrum-css/divider/stories/template.js";
@@ -24,8 +25,8 @@ export const MenuItem = ({
   isDrillIn = false,
   isCollapsible = false,
   isOpen = false,
-  shouldTruncate = false,
-  inlineSize = false,
+  shouldTruncate,
+  maxInlineSize,
   role = "menuitem",
   items = [],
   size,
@@ -36,6 +37,7 @@ export const MenuItem = ({
   value,
   ...globals
 }) => {
+  console.log('menu item', label, shouldTruncate)
   return html`
     <li
       class=${classMap({
@@ -53,7 +55,6 @@ export const MenuItem = ({
       role=${ifDefined(role)}
       aria-selected=${isSelected ? "true" : "false"}
       aria-disabled=${isDisabled ? "true" : "false"}
-      style=${ifDefined(inlineSize) ? `inline-size: ${inlineSize};` : ""}
       tabindex=${ifDefined(!isDisabled ? "0" : undefined)}>
       ${isCollapsible
         ? Icon({
@@ -76,7 +77,7 @@ export const MenuItem = ({
             ]
           }) : ''}
       ${isCollapsible
-        ? html`<span class="spectrum-Menu-sectionHeading">${label}</span>`
+        ? html`<span class="spectrum-Menu-sectionHeading ${shouldTruncate ? "spectrum-Menu-itemLabel--truncate" : "" }">${label}</span>`
         : ''
       }
       ${selectionMode != "multiple" && !isCollapsible
@@ -102,18 +103,18 @@ export const MenuItem = ({
             ],
           })
         : ''}
-      ${selectionMode == "multiple"
-        ? Checkbox({
+      ${when(selectionMode == "multiple", () =>  html`
+        ${Checkbox({
           ...globals,
           size,
           isEmphasized: true,
-          label: label,
-          id: `checkbox-${idx}`,
+          id,
           customClasses: [
             `${rootClass}Checkbox`,
           ],
-        })
-      : ''}
+        })}
+         <span  class="spectrum-Menu-itemLabel ${shouldTruncate ? "spectrum-Menu-itemLabel--truncate" : "" }">${label}</span>
+        `)}
       ${isChecked && selectionMode != "multiple"
         ? Icon({
             ...globals,
@@ -141,7 +142,7 @@ export const MenuItem = ({
             })}
             </div>`
           : ''}
-      ${isCollapsible && items.length > 0 ? Template({ ...globals, items, isOpen, size }) : ''}
+      ${isCollapsible && items.length > 0 ? Template({ ...globals, items, isOpen, size, shouldTruncate }) : ''}
     </li>
   `
 };
@@ -153,16 +154,20 @@ export const MenuGroup = ({
   items = [],
   isDisabled = false,
   isSelectable = false,
+  shouldTruncate,
+  maxInlineSize,
   subrole,
   size,
   ...globals
 }) => html`
+${console.log("menu group trundate?", shouldTruncate)}
     <li
       id=${ifDefined(id)}
       role="presentation">
       ${heading
         ? html`<span
-            class="spectrum-Menu-sectionHeading"
+            class="spectrum-Menu-sectionHeading ${shouldTruncate ? "spectrum-Menu-itemLabel--truncate" : "" }"
+            style=${maxInlineSize ? `max-inline-size: ${maxInlineSize}px;` : ""}
             id=${id ?? `menu-heading-category-${idx}`}
             aria-hidden="true"
             >${heading}</span
@@ -176,6 +181,8 @@ export const MenuGroup = ({
         items,
         isDisabled,
         isSelectable,
+        shouldTruncate: true,
+        maxInlineSize,
         size,
       })}
     </li>
@@ -188,6 +195,8 @@ export const Template = ({
   customStyles = {},
   size,
   isDisabled = false,
+  maxInlineSize,
+  shouldTruncate,
   selectionMode = "none",
   isOpen = false,
   hasActions = false,
@@ -197,6 +206,7 @@ export const Template = ({
   id,
   ...globals
 }) => {
+console.log('template', shouldTruncate)
 
   return html`
     <ul
@@ -212,9 +222,10 @@ export const Template = ({
       role=${ifDefined(role)}
       aria-labelledby=${ifDefined(labelledby)}
       aria-disabled=${isDisabled ? "true" : "false"}
-      style=${ifDefined(styleMap(customStyles))}
+      style=${maxInlineSize ? `max-inline-size: ${maxInlineSize}px;` : ""}
     >
       ${items.map((i, idx) => {
+        console.log('template items', i)
         if (i.type === "divider")
           return Divider({
             ...globals,
@@ -222,7 +233,7 @@ export const Template = ({
             size: "s",
             customClasses: [`${rootClass}-divider`],
           });
-        else if (i.heading) return MenuGroup({ ...i, ...globals, subrole, size, selectionMode });
+        else if (i.heading) return MenuGroup({ ...i, ...globals, subrole, size, selectionMode, shouldTruncate });
         else
           return MenuItem({
             ...globals,
@@ -232,6 +243,7 @@ export const Template = ({
             role: subrole,
             size,
             selectionMode,
+            shouldTruncate,
             hasActions,
           });
       })}
