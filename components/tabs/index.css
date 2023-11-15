@@ -408,13 +408,7 @@ governing permissions and limitations under the License.
 		}
 	}
 
-	&:focus:not(:focus-visible) {
-		&::before {
-			border-color: transparent;
-		}
-	}  
 
-	&:focus,
 	&:focus-visible {
 		color: var(
 			--highcontrast-tabs-color-key-focus,
