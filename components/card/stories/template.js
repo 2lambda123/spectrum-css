@@ -6,12 +6,14 @@ import { when } from "lit/directives/when.js";
 import { useArgs } from "@storybook/client-api";
 
 import { Template as ActionButton } from "@spectrum-css/actionbutton/stories/template.js";
-import { Template as QuickAction } from "@spectrum-css/quickaction/stories/template.js";
-import { Template as Checkbox } from "@spectrum-css/checkbox/stories/template.js";
 import { Template as Asset } from "@spectrum-css/asset/stories/template.js";
+import { Template as Checkbox } from "@spectrum-css/checkbox/stories/template.js";
 import { Template as Icon } from "@spectrum-css/icon/stories/template.js";
 
 import '../index.css';
+
+// Temporary workaround for quickaction deprecation
+import '@spectrum-css/quickaction';
 
 export const Template = ({
   rootClass = "spectrum-Card",
@@ -37,6 +39,10 @@ export const Template = ({
   ...globals
 }) => {
 	const [_, updateArgs] = useArgs();
+
+  if (hasQuickAction && !isHorizontal) {
+    import(/* webpackChunkName: "quickaction" */ '@spectrum-css/quickaction');
+  }
 
   return html`
     <div
@@ -115,21 +121,19 @@ export const Template = ({
         </div>`)}
       ${when(
         hasQuickAction && !isHorizontal,
-        () => QuickAction({
-          ...globals,
-          noOverlay: true,
-          content: [
-            Checkbox({
-              ...globals,
-              isChecked: isSelected,
-              title: "Select",
-            }),
-          ],
-          onclick: () => {
+        () => html`
+        <div
+          class="${classMap({
+            "spectrum-QuickActions": true,
+            [`${rootClass}-quickActions`]: true,
+            "is-open": true,
+          })}"
+          @click=${() => {
             updateArgs({ isSelected: !isSelected });
-          },
-          customClasses: [`${rootClass}-quickActions`],
-        })
-      )}
+          }}
+        >
+          ${Checkbox({ isChecked: isSelected, title: "Select" })}
+        </div>
+      `)}
     </div>`;
 };

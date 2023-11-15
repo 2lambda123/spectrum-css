@@ -2687,6 +2687,11 @@
   resolved "https://registry.yarnpkg.com/@spectrum-css/expressvars/-/expressvars-3.0.9.tgz#72678e0845c240bc9cb6b4d828f20806810f4cab"
   integrity sha512-mnxdnF2NGNdba+3OomwFURPG0XqNRD+S2cmX0ARYnia9lv84HpzhbSoGuqmQO4+4+dXe46zYjnKRe2L8oJM/zw==
 
+"@spectrum-css/quickaction@^3.0.91":
+  version "3.0.91"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/quickaction/-/quickaction-3.0.91.tgz#d0513c94a6b8e9c8dc167cc1fec1e55a3a74c39d"
+  integrity sha512-pidpmo5M6a43tfH2K37dw/wyu0JMJnNh6zwkr1Ms7/Agm04UUNjE9mqHU0msXk2Oz6uXOw4F8iHgfMuDFAyxxg==
+
 "@spectrum-css/vars@^9.0.8":
   version "9.0.8"
   resolved "https://registry.yarnpkg.com/@spectrum-css/vars/-/vars-9.0.8.tgz#6af3bcdace903b8461f5fcd4c9aa23e70128a456"

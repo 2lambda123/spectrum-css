@@ -46,11 +46,21 @@ function buildSite_tokens() {
 		])
 		.pipe(gulp.dest(path.join(__dirname, "../dist/components/tokens/")));
 }
+function buildSite_deprecated() {
+	return gulp
+		.src([
+			path.join(__dirname, "../.storybook/deprecated/*/*.html")
+		], {
+			allowEmpty: true,
+		})
+		.pipe(gulp.dest(path.join(__dirname, "../dist/")));
+}
 
 exports.copySiteResources = gulp.parallel(
 	buildSite_resources,
 	buildSite_tokens,
 	buildSite_loadicons,
 	buildSite_lunr,
-	buildSite_prism
+	buildSite_prism,
+	buildSite_deprecated,
 );
