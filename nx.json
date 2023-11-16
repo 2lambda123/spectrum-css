@@ -9,6 +9,13 @@
 		}
 	},
 	"targetDefaults": {
+		"clean": {
+			"inputs": ["{workspaceRoot}/dist"],
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": ["rimraf {projectRoot}/dist"]
+			}
+		},
 		"build": {
 			"dependsOn": ["clean", "^build"],
 			"inputs": ["{workspaceRoot}/*.css"]

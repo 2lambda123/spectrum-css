@@ -19,7 +19,6 @@
     "@adobe/spectrum-css-workflow-icons": "^1.2.1",
     "@spectrum-css/expressvars": "^3.0.9",
     "@spectrum-css/icon": "^4.0.5",
-    "@spectrum-css/site": "^4.0.2",
     "@spectrum-css/tokens": "^13.0.4",
     "@spectrum-css/vars": "^9.0.8"
   },
