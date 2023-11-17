@@ -1,7 +1,6 @@
 import { html } from "lit";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { styleMap } from "lit/directives/style-map.js";
 import { when } from "lit/directives/when.js";
 
 import { Template as Checkbox } from "@spectrum-css/checkbox/stories/template.js";
@@ -37,7 +36,6 @@ export const MenuItem = ({
   value,
   ...globals
 }) => {
-  console.log('menu item', label, shouldTruncate)
   return html`
     <li
       class=${classMap({
@@ -160,7 +158,6 @@ export const MenuGroup = ({
   size,
   ...globals
 }) => html`
-${console.log("menu group trundate?", shouldTruncate)}
     <li
       id=${ifDefined(id)}
       role="presentation">
@@ -206,7 +203,6 @@ export const Template = ({
   id,
   ...globals
 }) => {
-console.log('template', shouldTruncate)
 
   return html`
     <ul
@@ -225,7 +221,6 @@ console.log('template', shouldTruncate)
       style=${maxInlineSize ? `max-inline-size: ${maxInlineSize}px;` : ""}
     >
       ${items.map((i, idx) => {
-        console.log('template items', i)
         if (i.type === "divider")
           return Divider({
             ...globals,
