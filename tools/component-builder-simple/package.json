@@ -28,7 +28,7 @@
     "postcss-discard-empty": "^4.0.1",
     "postcss-dropdupedvars": "file:../../plugins/postcss-dropdupedvars",
     "postcss-dropunusedvars": "file:../../plugins/postcss-dropunusedvars",
-    "postcss-import": "^10.0.0",
+    "postcss-import": "^12.0.1",
     "postcss-inherit": "^4.0.3",
     "postcss-nested": "^3.0.0",
     "postcss-selector-parser": "^6.0.2",
