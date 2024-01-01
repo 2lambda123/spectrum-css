@@ -74,13 +74,13 @@ jobs:
               run: yarn install --frozen-lockfile --cache-folder .cache/yarn
 
             - name: Download build artifacts for head ${{ inputs.head-sha }}
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
                   name: ubuntu-latest-node18-compiled-assets-${{ inputs.head-sha }}
                   path: ${{ github.workspace }}/${{ inputs.head-sha }}/components
 
             - name: Download build artifacts for base ${{ inputs.base-sha }}
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
                   name: ubuntu-latest-node18-compiled-assets-${{ inputs.base-sha }}
                   path: ${{ github.workspace }}/${{ inputs.base-sha }}/components
@@ -112,7 +112,7 @@ jobs:
                   echo "key=ubuntu-latest-node18-compiled-assets-${{ matrix.branch }}" >> "$GITHUB_OUTPUT"
 
             - name: Check if build artifacts already exist
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               id: artifact-found
               continue-on-error: true
               with:
