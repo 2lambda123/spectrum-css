@@ -16,7 +16,7 @@
     "@spectrum-css/expressvars": "^3.0.9",
     "@spectrum-css/tokens": "^13.0.4",
     "@spectrum-css/vars": "^9.0.8",
-    "npm-registry-fetch": "^14.0.5"
+    "npm-registry-fetch": "^16.1.0"
   },
   "peerDependencies": {
     "@spectrum-css/expressvars": ">=3",
