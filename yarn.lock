@@ -10937,12 +10937,12 @@ lead@^1.0.0:
 "legacy-postcss-dropdupedvars@file:plugins/legacy-postcss-dropdupedvars":
   version "1.0.0"
   dependencies:
-    postcss "^8.4.33"
+    postcss "^8.4.35"
 
 "legacy-postcss-dropunusedvars@file:plugins/legacy-postcss-dropunusedvars":
   version "1.0.0"
   dependencies:
-    postcss "^8.4.33"
+    postcss "^8.4.35"
     postcss-value-parser "^4.1.0"
 
 lerna@^6.6.2:
@@ -13700,12 +13700,12 @@ postcss-discard-empty@^6.0.0:
 "postcss-dropdupedvars@file:plugins/postcss-dropdupedvars":
   version "1.1.2"
   dependencies:
-    postcss "^8.4.33"
+    postcss "^8.4.35"
 
 "postcss-dropunusedvars@file:plugins/postcss-dropunusedvars":
   version "1.2.1"
   dependencies:
-    postcss "^8.4.33"
+    postcss "^8.4.35"
     postcss-value-parser "^4.1.0"
 
 postcss-import@^10.0.0:
@@ -13978,10 +13978,10 @@ postcss@^7.0.0, postcss@^7.0.17, postcss@^7.0.2, postcss@^7.0.5, postcss@^7.0.6:
     picocolors "^0.2.1"
     source-map "^0.6.1"
 
-postcss@^8.4.21, postcss@^8.4.28, postcss@^8.4.33:
-  version "8.4.33"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.33.tgz#1378e859c9f69bf6f638b990a0212f43e2aaa742"
-  integrity sha512-Kkpbhhdjw2qQs2O2DGX+8m5OVqEcbB9HRBvuYM9pgrjEFUg30A9LmXNlTAUj4S9kgtGyrMbTzVjH7E+s5Re2yg==
+postcss@^8.4.21, postcss@^8.4.28, postcss@^8.4.35:
+  version "8.4.35"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.35.tgz#60997775689ce09011edf083a549cea44aabe2f7"
+  integrity sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==
   dependencies:
     nanoid "^3.3.7"
     picocolors "^1.0.0"
