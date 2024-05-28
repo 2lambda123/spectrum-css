@@ -21,7 +21,7 @@
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.4.0",
     "gulplog": "^2.0.1",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.38",
     "postcss-calc": "^9.0.1",
     "postcss-combininator": "^1.0.2",
     "postcss-discard-comments": "^4.0.0",
